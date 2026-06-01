@@ -1,31 +1,50 @@
 # AI Art Portfolio
 
-A refined Apple-inspired portfolio site for showcasing AI-generated character artworks by Lrtisiy.
+An Apple-inspired AI art portfolio for presenting character-based AI-generated artworks by Lrtisiy.
 
 ## Overview
 
-This project is a React + Vite single-page gallery for AI art collections. It features:
+This is a React + Vite single-page portfolio site focused on clean visual presentation, generous spacing, soft glass effects, and local artwork assets. The layout is designed to keep the artworks as the main visual focus across desktop and mobile screens.
 
-- Full-screen hero artwork
-- Glassmorphism navigation and panels
-- Character-based artwork sections
-- Paginated image galleries
-- Responsive layout for desktop and mobile
-- Local image assets from `public/artworks`
+Current highlights:
 
-## Characters
+- Minimal translucent top navigation
+- Editorial hero section using `37-1.png`
+- Character-based artwork collections
+- Paginated local image galleries
+- Independent About and Contact sections
+- Smooth anchor navigation
+- Hover motion for cards and buttons
+- Responsive layout for mobile browsing
 
-The current gallery is organized into three collections:
+## Gallery Structure
 
-- `37`
-- `Mutsumi Wakaba`
-- `Sakiko Togawa`
-
-Artwork files are stored under:
+Artwork files are stored in:
 
 ```text
 public/artworks/
 ```
+
+The current gallery is organized by character folders:
+
+- `character-37`
+- `character-mutsimi`
+- `character-togawa`
+- `character-jinhsi`
+- `character-sparkle`
+
+The homepage hero image uses:
+
+```text
+public/artworks/37-1.png
+```
+
+## Page Sections
+
+- `Hero`: portfolio title and featured artwork
+- `Works`: paginated character artwork galleries
+- `About`: character inspiration and visual direction
+- `Contact`: standalone contact section with a mail button
 
 ## Tech Stack
 
@@ -61,9 +80,11 @@ npm run preview
 
 ## Deployment
 
-Recommended deployment platform: Vercel.
+Recommended platform: Vercel.
 
 Use the default Vite settings:
 
 - Build command: `npm run build`
 - Output directory: `dist`
+
+After connecting the GitHub repository to Vercel, every push to the main branch can trigger a new deployment.
