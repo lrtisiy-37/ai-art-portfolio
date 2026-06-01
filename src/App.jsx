@@ -139,7 +139,7 @@ function App() {
         </a>
         <div className="nav-links">
           <a href="#works">作品</a>
-          <a href="#styles">角色</a>
+          <a href="#about">关于</a>
           <a href="#contact">联系</a>
         </div>
       </nav>
@@ -266,13 +266,13 @@ function App() {
         })}
       </section>
 
-      <section className="about-contact" id="contact" aria-label="About and contact">
+      <section className="about-section" id="about" aria-label="About">
         <div className="about-panel">
           <p className="eyebrow">About</p>
-          <h2>关于这个作品集</h2>
+          <h2>角色灵感档案</h2>
           <p>
-            这是一个 AI 绘画作品展示网站，用于整理和呈现由人工智能生成的视觉艺术。
-            页面强调角色分组、视觉风格探索、概念设计和灵感表达。
+            这些作品围绕不同角色的气质、身份与世界观展开，用 AI 绘画重新提炼人物的色彩、
+            情绪和视觉符号。每个角色都保留独立成章的展示节奏，用于探索角色设定、概念设计和灵感表达。
           </p>
           <div className="source-links" aria-label="Character reference links">
             {sourceLinks.map((source) => (
@@ -282,6 +282,9 @@ function App() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="contact-section" id="contact" aria-label="Contact">
         <div className="contact-panel">
           <p className="eyebrow">Contact</p>
           <h2>联系</h2>
