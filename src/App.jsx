@@ -91,7 +91,15 @@ const galleries = [
     mood: '面具、玩笑、红黑舞台、危险的甜美',
     description:
       '花火来自《Honkai: Star Rail》，是欢愉命途下的 Masked Fools 成员。她的角色气质带有表演性、恶作剧和多重面具感；单张作品更适合以海报式大图呈现，让视觉重心集中在表情和舞台感上。',
-    files: ['character-sparkle/5.png'],
+    files: [
+      'character-sparkle/5 (1).png',
+      'character-sparkle/5 (2).png',
+      'character-sparkle/5 (3).png',
+      'character-sparkle/5 (4).png',
+      'character-sparkle/5 (5).png',
+      'character-sparkle/5 (6).png',
+      'character-sparkle/5 (7).png',
+    ],
   },
 ]
 
