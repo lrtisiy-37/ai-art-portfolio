@@ -67,7 +67,3 @@ Use the default Vite settings:
 
 - Build command: `npm run build`
 - Output directory: `dist`
-
-## Contact
-
-Email: <lrtisiy@gmail.com>
