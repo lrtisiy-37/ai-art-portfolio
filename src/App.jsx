@@ -13,7 +13,7 @@ const galleries = [
     role: 'Star Arcanist / Mental / Geometry',
     mood: '数字、海风、几何、抽象世界',
     description:
-      '37 是《Reverse: 1999》中与数字和几何紧密相连的角色。资料中提到她对“抽象世界”有强烈亲近感，并以数字理解世界；因此这一组作品适合用清透蓝绿、细腻线条和安静的数学感来呈现。',
+      '37 来自《Reverse: 1999》，角色意象围绕数字、几何与抽象世界展开。这一组作品适合用清透蓝绿、细腻线条和安静的数学感来呈现，让人物像被放置在一张干净的概念设定稿中。',
     files: [
       'character-37/3 (1).png',
       'character-37/3 (2).png',
@@ -36,7 +36,7 @@ const galleries = [
     role: 'Guitar / Ave Mujica',
     mood: '沉静、克制、舞台人格、冷色人物光',
     description:
-      '若叶睦是 Ave Mujica 的吉他手，舞台名 Mortis。官方资料描述她不太表露情绪、不善言辞，但会以自己的方式关心他人；这一组更适合做成安静、克制、带一点舞台疏离感的人物系列。',
+      '若叶睦是 Ave Mujica 的吉他手，舞台名 Mortis。她的气质更内收、安静，不急于表达情绪；这一组适合做成克制而疏离的角色肖像，像舞台灯光落在一位沉默的演奏者身上。',
     files: [
       'character-mutsimi/2 (1).png',
       'character-mutsimi/2 (2).png',
@@ -54,7 +54,7 @@ const galleries = [
     role: 'Keyboard / Ave Mujica',
     mood: '高贵、决意、舞台世界观、深色戏剧感',
     description:
-      '丰川祥子是 Ave Mujica 的键盘手，舞台名 Oblivionis。官方资料强调她以承担成员人生的觉悟组建 Ave Mujica，并投入心血维护乐队世界观；这一组适合更规整、更有仪式感的视觉排布。',
+      '丰川祥子是 Ave Mujica 的键盘手，舞台名 Oblivionis。她承担着乐队世界观与舞台秩序的核心气质；这一组更适合规整、仪式感强的排版，突出角色的决意与戏剧张力。',
     files: [
       'character-togawa/1 (1).png',
       'character-togawa/1 (2).png',
@@ -64,6 +64,35 @@ const galleries = [
       'character-togawa/1 (6).png',
     ],
   },
+  {
+    id: 'character-jinhsi',
+    navLabel: 'Jinhsi',
+    title: 'Jinhsi',
+    subtitle: 'Magistrate of Jinzhou',
+    origin: 'Wuthering Waves',
+    role: 'Spectro Resonator / Broadblade',
+    mood: '龙意象、白金光、东方幻想、庄重感',
+    description:
+      '今汐来自《Wuthering Waves》，是今州今令尹，也是游戏中具有 Spectro 属性的角色。她的视觉关键词更偏向白金、龙形意象与东方幻想，因此这一组采用更明亮、庄重、接近高定画册的展示节奏。',
+    files: [
+      'character-jinhsi/4 (1).png',
+      'character-jinhsi/4 (2).png',
+      'character-jinhsi/4 (3).png',
+      'character-jinhsi/4 (4).png',
+    ],
+  },
+  {
+    id: 'character-sparkle',
+    navLabel: 'Sparkle',
+    title: 'Sparkle',
+    subtitle: 'Masked Fool',
+    origin: 'Honkai: Star Rail',
+    role: 'Quantum / Harmony',
+    mood: '面具、玩笑、红黑舞台、危险的甜美',
+    description:
+      '花火来自《Honkai: Star Rail》，是欢愉命途下的 Masked Fools 成员。她的角色气质带有表演性、恶作剧和多重面具感；单张作品更适合以海报式大图呈现，让视觉重心集中在表情和舞台感上。',
+    files: ['character-sparkle/5.png'],
+  },
 ]
 
 const sourceLinks = [
@@ -72,12 +101,20 @@ const sourceLinks = [
     url: 'https://reverse1999.fandom.com/wiki/37',
   },
   {
-    label: 'BanG Dream! Ave Mujica - Mutsumi Wakaba',
+    label: 'Ave Mujica - Mutsumi Wakaba',
     url: 'https://anime.bang-dream.com/avemujica/character/mutsumi/',
   },
   {
-    label: 'BanG Dream! Ave Mujica - Sakiko Togawa',
+    label: 'Ave Mujica - Sakiko Togawa',
     url: 'https://anime.bang-dream.com/avemujica/character/sakiko/',
+  },
+  {
+    label: 'Wuthering Waves Wiki - Jinhsi',
+    url: 'https://wutheringwaves.fandom.com/wiki/Jinhsi',
+  },
+  {
+    label: 'Honkai: Star Rail - Sparkle',
+    url: 'https://en.wikipedia.org/wiki/Sparkle_(Honkai:_Star_Rail)',
   },
 ]
 
@@ -108,26 +145,35 @@ function App() {
       </nav>
 
       <section className="hero" id="top">
-        <img className="hero-image" src={`/artworks/${heroArtwork}`} alt="AI 绘画作品头图" />
-        <div className="hero-overlay" />
-        <div className="hero-copy">
-          <p className="script-label">Lrtisiy AI Art</p>
-          <h1>AI 绘制想象的边界</h1>
-          <p className="hero-subtitle">展示由人工智能生成的视觉艺术作品</p>
-          <a className="primary-button" href="#works">浏览作品</a>
+        <div className="hero-geometry" aria-hidden="true">
+          <span className="geo-line geo-line-a" />
+          <span className="geo-line geo-line-b" />
+          <span className="geo-dot geo-dot-a" />
+          <span className="geo-dot geo-dot-b" />
+          <span className="geo-plane geo-plane-a" />
+          <span className="geo-plane geo-plane-b" />
+        </div>
+        <div className="hero-stage">
+          <div className="hero-copy">
+            <p className="script-label">Lrtisiy AI Art</p>
+            <h1>
+              <span className="title-ai">AI</span>
+              <span className="title-main">绘制想象的边界</span>
+            </h1>
+            <p className="hero-subtitle">展示由人工智能生成的视觉艺术作品</p>
+            <a className="primary-button" href="#works">浏览作品</a>
+          </div>
+
+          <figure className="hero-visual-frame">
+            <img className="hero-image" src={`/artworks/${heroArtwork}`} alt="AI 绘画作品头图" />
+            <figcaption>
+              <span>37 / Reverse: 1999</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      <section className="intro-section" id="works">
-        <p className="eyebrow">Curated Characters</p>
-        <h2>按角色分组的作品集</h2>
-        <p>
-          三组角色独立排版，每一组保留留白、说明和分页控制，让浏览节奏更规整，
-          也方便之后继续扩展新的角色文件夹。
-        </p>
-      </section>
-
-      <section className="collections" id="styles">
+      <section className="collections" id="works">
         {galleries.map((gallery, galleryIndex) => {
           const totalPages = Math.ceil(gallery.files.length / PAGE_SIZE)
           const currentPage = Math.min(pages[gallery.id] ?? 0, totalPages - 1)
@@ -192,7 +238,7 @@ function App() {
                     </div>
                   </div>
 
-                  <div className="art-grid">
+                  <div className={`art-grid ${gallery.files.length === 1 ? 'single-work' : ''}`}>
                     {visibleFiles.map((fileName, imageIndex) => {
                       const imageNumber = currentPage * PAGE_SIZE + imageIndex + 1
 
