@@ -299,6 +299,21 @@ img {
   filter: saturate(1.04) contrast(1.01);
 }
 
+.hero-image-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 24px;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.hero-image-button:focus-visible {
+  outline: 3px solid rgba(23, 25, 31, 0.32);
+  outline-offset: 4px;
+}
+
 .hero-visual-frame figcaption {
   display: flex;
   min-height: 48px;
@@ -639,6 +654,7 @@ img {
     transform 220ms ease,
     box-shadow 220ms ease,
     border-color 220ms ease;
+  cursor: zoom-in;
 }
 
 .art-card:hover {
@@ -648,9 +664,25 @@ img {
 }
 
 .art-image {
+  display: block;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #e4e2de;
+}
+
+.art-open-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.art-open-button:focus-visible {
+  outline: 3px solid rgba(23, 25, 31, 0.32);
+  outline-offset: -3px;
 }
 
 .art-image img {
@@ -749,15 +781,101 @@ img {
   color: #fff;
 }
 
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 46px);
+  background: rgba(246, 244, 240, 0.72);
+  backdrop-filter: blur(28px) saturate(140%);
+  animation: lightboxFade 180ms ease both;
+}
+
+.lightbox-frame {
+  position: relative;
+  display: grid;
+  width: min(1120px, 100%);
+  max-height: calc(100vh - 40px);
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 36px 100px rgba(20, 23, 28, 0.22);
+}
+
+.lightbox-frame img {
+  width: 100%;
+  max-height: min(74vh, 820px);
+  object-fit: contain;
+  background: #f3f0ea;
+}
+
+.lightbox-frame figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 22px;
+  color: #292d35;
+}
+
+.lightbox-frame span,
+.lightbox-frame em {
+  color: #747881;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.lightbox-frame strong {
+  font-size: clamp(1.05rem, 2vw, 1.5rem);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  min-width: 74px;
+  min-height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  background: rgba(22, 24, 29, 0.82);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 760;
+  backdrop-filter: blur(16px);
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(22, 24, 29, 0.96);
+  transform: translateY(-1px);
+}
+
 @keyframes pageFade {
   from {
     opacity: 0;
-    transform: translateY(12px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+  }
+}
+
+@keyframes lightboxFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 
@@ -878,8 +996,16 @@ img {
 
   .art-card,
   .about-panel,
-  .contact-panel {
+  .contact-panel,
+  .lightbox-frame {
     border-radius: 22px;
+  }
+
+  .lightbox-frame figcaption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px;
   }
 
   .contact-section {

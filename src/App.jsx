@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const heroArtwork = '37-1.png'
 const PAGE_SIZE = 4
@@ -130,6 +130,28 @@ function App() {
   const [pages, setPages] = useState(() =>
     Object.fromEntries(galleries.map((gallery) => [gallery.id, 0])),
   )
+  const [selectedArtwork, setSelectedArtwork] = useState(null)
+
+  useEffect(() => {
+    if (!selectedArtwork) {
+      return undefined
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setSelectedArtwork(null)
+      }
+    }
+
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = originalOverflow
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [selectedArtwork])
 
   const setGalleryPage = (galleryId, page) => {
     setPages((currentPages) => ({
@@ -173,7 +195,21 @@ function App() {
           </div>
 
           <figure className="hero-visual-frame">
-            <img className="hero-image" src={`/artworks/${heroArtwork}`} alt="AI 绘画作品头图" />
+            <button
+              className="hero-image-button"
+              type="button"
+              onClick={() =>
+                setSelectedArtwork({
+                  src: `/artworks/${heroArtwork}`,
+                  title: '37',
+                  subtitle: 'The Number Transcends All Matters',
+                  origin: 'Reverse: 1999',
+                })
+              }
+              aria-label="查看头图大图"
+            >
+              <img className="hero-image" src={`/artworks/${heroArtwork}`} alt="AI 绘画作品头图" />
+            </button>
             <figcaption>
               <span>37 / Reverse: 1999</span>
             </figcaption>
@@ -249,19 +285,39 @@ function App() {
                   <div className={`art-grid ${gallery.files.length === 1 ? 'single-work' : ''}`}>
                     {visibleFiles.map((fileName, imageIndex) => {
                       const imageNumber = currentPage * PAGE_SIZE + imageIndex + 1
+                      const paddedImageNumber = String(imageNumber).padStart(2, '0')
+                      const artworkTitle = `${gallery.title}-${paddedImageNumber}`
+                      const artworkSrc = `/artworks/${fileName}`
 
                       return (
-                        <figure className="art-card" key={fileName}>
-                          <div className="art-image">
-                            <img
-                              src={`/artworks/${fileName}`}
-                              alt={`${gallery.title} AI 绘画作品 ${imageNumber}`}
-                              loading="lazy"
-                            />
-                          </div>
+                        <figure
+                          className="art-card"
+                          key={fileName}
+                          onClick={() =>
+                            setSelectedArtwork({
+                              src: artworkSrc,
+                              title: artworkTitle,
+                              subtitle: gallery.subtitle,
+                              origin: gallery.origin,
+                            })
+                          }
+                        >
+                          <button
+                            className="art-open-button"
+                            type="button"
+                            aria-label={`查看 ${artworkTitle} 大图`}
+                          >
+                            <span className="art-image">
+                              <img
+                                src={artworkSrc}
+                                alt={`${gallery.title} AI 绘画作品 ${imageNumber}`}
+                                loading="lazy"
+                              />
+                            </span>
+                          </button>
                           <figcaption>
                             <span>{gallery.subtitle}</span>
-                            <strong>{String(imageNumber).padStart(2, '0')}</strong>
+                            <strong>{paddedImageNumber}</strong>
                           </figcaption>
                         </figure>
                       )
@@ -302,6 +358,33 @@ function App() {
           </a>
         </div>
       </section>
+
+      {selectedArtwork && (
+        <div
+          className="lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedArtwork.title} artwork preview`}
+          onClick={() => setSelectedArtwork(null)}
+        >
+          <figure className="lightbox-frame" onClick={(event) => event.stopPropagation()}>
+            <button
+              className="lightbox-close"
+              type="button"
+              onClick={() => setSelectedArtwork(null)}
+              aria-label="关闭图片预览"
+            >
+              Close
+            </button>
+            <img src={selectedArtwork.src} alt={`${selectedArtwork.title} 大图预览`} />
+            <figcaption>
+              <span>{selectedArtwork.subtitle}</span>
+              <strong>{selectedArtwork.title}</strong>
+              <em>{selectedArtwork.origin}</em>
+            </figcaption>
+          </figure>
+        </div>
+      )}
     </main>
   )
 }
